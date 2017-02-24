@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Book n Review</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" type="text/css" href="{%static 'login_reg/style.css'%}">
+  </head>
+  <body>
+    {%if messages%}
+      {%for message in messages%}
+        <p class="{{message.tags}}">{{message}}</p>
+      {%endfor%}
+    {%endif%}
+    <form action="/books/add/process" method="POST">
+      {%csrf_token%}
+      <h4>Add a new a book and add review</h4>
+      <p>Book Title: <input type="text" name="title"></p>
+      <p>Choose an author
+        <select name="choosen_author">
+          <option>Stephen King</option>
+          <option>Sun Tzu</option>
+          <option>Unknown</option>
+        </select>
+      </p>
+      <p>or Add an author <input type="text" name="add_author"></p>
+      <p>Review <textarea name='review'></textarea></p>
+      <p>Rating:
+        <select name="rating">
+          <option>5</option>
+          <option>4</option>
+          <option>3</option>
+          <option>2</option>
+          <option>1</option>
+        </select>
+      </p>
+      <input type="submit" value="Add book and review">
+    </form>
+  </body>
+</html>

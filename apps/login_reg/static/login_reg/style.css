@@ -1,0 +1,27 @@
+*{
+  font-family: Arial;
+}
+form{
+  display:inline-block;
+  width:48%;
+  vertical-align: top;
+}
+ul.messages{
+  list-style: none;
+}
+.error{
+  color: red;
+}
+.success{
+  color:green;
+}
+.book_info{
+  width:49%;
+  display:inline-block;
+  vertical-align: top;
+}
+.book_review_form{
+  width:49%;
+  display:inline-block;
+  vertical-align: top;
+}

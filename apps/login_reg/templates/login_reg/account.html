@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Account</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" type="text/css" href="{%static 'login_reg/style.css'%}">
+  </head>
+  <body>
+    <ul>
+      <li><a href='/users/{{user.id}}'>Home</a></li>
+      <li><a href='/books/add'>Add book and review</a></li>
+      <li><a href='/logout'>Log Out</a></li>
+    </ul>
+    <p>User Alias: {{user.alias}}</p>
+    <p>Name: {{user.name}}</p>
+    <p>Email: {{user.email}}</p>
+    <p>Total Reviews: {{reviews.book__count}}
+      <!-- {%for review in reviews%}
+        {{review.sum_reviews}}
+      {%endfor%} -->
+    </p>
+    <h4>Posted Reviews on the following books</h4>
+    {%for review in all_reviews%}
+      <a href='/books/{{review.id}}'>{{review.title}}</a><br>
+    {%endfor%}
+  </body>
+</html>

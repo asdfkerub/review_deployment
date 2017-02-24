@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BOOK</title>
+    {%load staticfiles%}
+    <link rel="stylesheet" href="{% static 'login_reg/style.css'%}" type="text/css">
+  </head>
+  <body>
+    <ul>
+      <li><a href='/users/{{user.id}}'>Home</a></li>
+      <li><a href='/logout'>Log Out</a></li>
+    </ul>
+    <div class="book_info">
+      <h3>{{books.title}}</h3>
+      <p>Author: {{books.author}}</p>
+      <h4>Reviews:</h4>
+      {%for book in books.reviews.all%}
+        <fieldset>
+          <p>Rating: {{book.rating}}</p>
+          <p><a href='/users/{{book.user.id}}'>{{book.user.name}}</a> says: {{book.review}}</p>
+          <p>Created at: {{book.created_at}}</p>
+          {%if book.user.id == logged_in_id%}
+            <a href="/delete/review/{{the_book.id}}">Delete review</a>
+          {%endif%}
+        </fieldset>
+      {%endfor%}
+    </div>
+    <div class="book_review_form">
+      <form action="/book/add_review/{{books.id}}" method="POST">
+        {%csrf_token%}
+        <p>Add a Review</p>
+        <textarea name="review"></textarea>
+        <p>Rating:
+          <select name="rating">
+            <option>5</option>
+            <option>4</option>
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+          </select>
+        </p>
+        <input type="submit" value="Add a review">
+      </form>
+    </div>
+  </body>
+</html>
